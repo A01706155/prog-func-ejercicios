@@ -10,44 +10,74 @@
     (cond
       [(null? lst) (my-append lst (cons n '()))]
       [else (quicksort (my-append lst (cons n '())))]
+      )
     )
   )
-)
 
 ;; 2. insertion-sort
 (define (ins num lst)
-    (if (null? lst) (list num)
+  (if (null? lst) (list num)
         
-        (let ((x (car lst)) (xs (cdr lst))
-        )
+      (let ((x (car lst)) (xs (cdr lst))
+                          )
         
         (if (<= num x) (cons num lst) (cons x (ins num xs)))
         )
-    )
-)
+      )
+  )
 
 (define (insertion-sort lst)
-    (cond
-      [(null? lst) '()]
-      [else (ins (car lst)(insertion-sort (cdr lst)))]
+  (cond
+    [(null? lst) '()]
+    [else (ins (car lst)(insertion-sort (cdr lst)))]
     )
-)
+  )
 
-;; 3: rotate-left
+;; 3. rotate-left
 (define (rotate-left n lst)
-    (cond
+  (cond
 
-      [(null? lst) '()]
-      [(eq? n 0) lst]
-      [(< n 0) (rotate-left (+ n 1)
-                   (my-append (cons (car (reverse-head lst) '() ))
-                   (reverse-head (cdr (reverse-head lst))))
-               )
-      ]
-      [else (rotate-left (- n 1) (my-append (cdr lst) (cons (car lst) '())))]
+    [(null? lst) '()]
+    [(eq? n 0) lst]
+    [(< n 0) (rotate-left (+ n 1)
+                          (my-append (cons (car (reverse-head lst) '() ))
+                                     (reverse-head (cdr (reverse-head lst))))
+                          )
+             ]
+    [else (rotate-left (- n 1) (my-append (cdr lst) (cons (car lst) '())))]
       
     )
-)
+  )
+
+;; 4. prime factors
+(define (prime-factors n)  
+  (let
+    rec ((n n) (m 2))
+    (cond
+      [(= n 1) '()]
+      [(= 0 (modulo n m)) (cons m (rec (/ n m) m))]
+      [else (rec n (+ 1 m))]
+      )
+    )
+  )
+
+
+;; 5. gcd
+(define (gcd a b)
+  (cond
+    [(= b 0) a]
+    [else (gcd b (modulo a b))]
+    )
+  )
+
+;; 6. deep-reverse
+
+(define (deep-reverse lst)
+  (if (list? lst)
+      (reverse (map deep-reverse lst)) lst
+    )
+  )
+
 
 ; ##########################
 ; # Ejercicios Daniel Cruz #
@@ -64,7 +94,7 @@
 (define aux
   (lambda (x lst lst2 len)
     (if (eq? len -1) lst2
-    (aux x lst (cons (index x lst '() len) lst2) (- len 1)))))
+        (aux x lst (cons (index x lst '() len) lst2) (- len 1)))))
 
 (define index
   (lambda (x lst new ind)
@@ -79,16 +109,16 @@
 ;; 8 pack
 ;recibe una lista y devuelve una lista de listas que agrupan los elementos de la primera lista
 (define (pack lst)
- (cond [(null? lst) null]
-       [else (group (cdr lst) (list (car lst)))]))
+  (cond [(null? lst) null]
+        [else (group (cdr lst) (list (car lst)))]))
  
 (define (group lst lst2)
   (define n -1)
- (cond [(and (pair? lst)
-             (eq? (car lst) (list-ref lst2 (add1 n))))
-        (group (cdr lst)
-                        (cons (car lst) lst2))]
-       [else (cons (reverse lst2) (pack lst))]))
+  (cond [(and (pair? lst)
+              (eq? (car lst) (list-ref lst2 (add1 n))))
+         (group (cdr lst)
+                (cons (car lst) lst2))]
+        [else (cons (reverse lst2) (pack lst))]))
 
 ;; 9. compress
 ;recibe una lista y devuelve otra lista en la cual los elementos repetidos de la primera lista se reemplazan por una sola insatncia
@@ -104,18 +134,18 @@
 ;recibe una lista y devuelve los elementos consecutivos codificados en listas de la forma (n e)
 ;si un elemento no tiene duplicados simplemente se copia en la lista resultante
 (define (encode-modified lst)
-    (cond
-      [(empty? lst) lst]
-      [(enmod lst '() 0 0)]))
+  (cond
+    [(empty? lst) lst]
+    [(enmod lst '() 0 0)]))
 
 (define (enmod lst new val cont)
-    (if (empty? lst) (if (eq? cont 1)
-        (reverse (cons val new) '()) (reverse2 (cons (cons cont (list val)) new) '()))
-            (cond
-              [(eq? cont 0) (enmod (cdr lst) new (car lst) 1)]
-              [(and (not(eq? val (car lst))) (eq? cont 1)) (enmod (cdr lst) (cons val new) (car lst) 1)]
-              [(not(eq? val (car lst))) (enmod (cdr lst) (cons (cons cont (list val)) new) (car lst) 1)]
-              [else (enmod (cdr lst) new val (+ cont 1))])))
+  (if (empty? lst) (if (eq? cont 1)
+                       (reverse (cons val new) '()) (reverse2 (cons (cons cont (list val)) new) '()))
+      (cond
+        [(eq? cont 0) (enmod (cdr lst) new (car lst) 1)]
+        [(and (not(eq? val (car lst))) (eq? cont 1)) (enmod (cdr lst) (cons val new) (car lst) 1)]
+        [(not(eq? val (car lst))) (enmod (cdr lst) (cons (cons cont (list val)) new) (car lst) 1)]
+        [else (enmod (cdr lst) new val (+ cont 1))])))
 
 ;; 12. decode
 ;recibe una lista codificada y la devuelve descodificada
@@ -140,10 +170,10 @@
 
 ;; Ejercicio 14
 (define (there-exists-one? pred lst)
-        (cond
-          [(null? lst) #f]
-          [(pred (car lst))]
-          [else (there-exists-one? pred (cdr lst))]))
+  (cond
+    [(null? lst) #f]
+    [(pred (car lst))]
+    [else (there-exists-one? pred (cdr lst))]))
 
 ; .------------------------------------------------------------.
 ; | Partes de código que nos pueden ayudar mucho, sesión 1 y 2 |
