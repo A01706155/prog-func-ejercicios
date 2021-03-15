@@ -190,3 +190,8 @@
       [else (my-append (reverse-head (cdr list))
                        (cons (car list) '()))])))
 ;; example: (reverse-head '(1 2 3)) => '(3 2 1)
+
+;; ----------- Adicional ---------------
+(define in-lst
+  (lambda (elem)
+    (cons elem '())))

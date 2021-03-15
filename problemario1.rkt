@@ -101,7 +101,15 @@
   )
 )
 
-;
+; 15. dot-product
+(define (dot-product a b)
+  (cond
+    ( (null? a) 0)
+        (else
+         (+ (* (car a) (car b)) (dot-product (cdr a) (cdr b)))
+        )
+    )
+)
 
 
 ;
