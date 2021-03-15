@@ -113,10 +113,15 @@
 
 ;; 20. binary
 (define (binary n)
-  (cond ((zero? n) '())
-        (else (cons(remainder n 2) (binary (quotient n 2))
-              )
-        )
+  (letrec ((recc(lambda (acc n)
+                    (cond 
+                      [(zero? n) acc]
+                      [else (recc (cons (remainder n 2) acc) (quotient n 2))]
+                    )
+                )
+            )
+          )
+    (recc '() n)
   )
 )
 
