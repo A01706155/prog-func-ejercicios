@@ -95,13 +95,21 @@
     )
 )
 
-; 
+; 12. invert-pairs
+(define (invert-pairs lst)
+  (map (lambda (lst2) (reverse lst2)) lst
+  )
+)
 
+;
+
+
+;
 
 
 
 ; ------------------------------------------------------------
-; Partes de código que nos pueden ayudar mucho, sesion 1 y 2
+; Partes de código que nos pueden ayudar mucho, sesión 1 y 2
 (define repeat-head
   (lambda (atom amount)
     (cond
