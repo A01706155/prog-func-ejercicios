@@ -1,5 +1,9 @@
 #lang racket
 
+;; 14/03/2021
+;; Manolo Ramírez A0170155
+;; Daniel Cruz A01701370
+
 ;; ##########################
 ;; # Ejercicios Daniel Cruz #
 ;; ##########################
@@ -8,12 +12,12 @@
 ;toma como entrada una temperaturafen grados Fahrenheit y laconvierte a su equivalente en grados Celsius 
 (define (fahrenheit-to-celsius f)
   (/ (* 5 (- f 32)) 9) ;;formula
-)
+  )
 
 ;; 2. sign
 ;regresa 1 si el numero es positivo y -1 si es negativo
 (define (sign n)
- (if (>= n 0) 1 -1) 
+  (if (>= n 0) 1 -1) 
   )
 
 ;; 3. roots
@@ -53,8 +57,8 @@
 ;; 16. average
 ;devuelve el promedio de una lista dada como parametro
 (define (sum lst)
-(if (null? lst) 0
-    (+ (car lst) (sum (cdr lst))))
+  (if (null? lst) 0
+      (+ (car lst) (sum (cdr lst))))
   )
 
 (define (average lst)
@@ -72,58 +76,58 @@
     [(null? lst) '()]
     [else (my-append (repeat-head (car lst) 2) (duplicate (cdr lst)))]
     )
-)
+  )
 
 ;; 8. fib
 (define (fib n)
   (if (<= n 1)
       1 (+ (fib (- n 1)) (fib (- n 2)))
+      )
   )
-)
 
 ;; 10 positives
 (define (positives lst)
-    (cond
-      [(null? lst) '()]
-      [(>= (car lst) 0) (my-append (cons(car lst) '()) (positives (cdr lst)))]
-      [else (positives (cdr lst))]))
+  (cond
+    [(null? lst) '()]
+    [(>= (car lst) 0) (my-append (cons(car lst) '()) (positives (cdr lst)))]
+    [else (positives (cdr lst))]))
 
 ;; 11. add-list
 (define (add-list lst)
-    (if (empty? lst) 0 (+ (car lst) 
-        (add-list (cdr lst)))
-    )
-)
+  (if (empty? lst) 0 (+ (car lst) 
+                        (add-list (cdr lst)))
+      )
+  )
 
 ;; 12. invert-pairs
 (define (invert-pairs lst)
   (map (lambda (lst2) (reverse lst2)) lst
+       )
   )
-)
 
 ;; 15. dot-product
 (define (dot-product a b)
   (cond
     ((null? a) 0)
-        (else
-         (+ (* (car a) (car b)) (dot-product (cdr a) (cdr b)))
-        )
+    (else
+     (+ (* (car a) (car b)) (dot-product (cdr a) (cdr b)))
+     )
     )
-)
+  )
 
 ;; 20. binary
 (define (binary n)
   (letrec ((recc(lambda (acc n)
-                    (cond 
-                      [(zero? n) acc]
-                      [else (recc (cons (remainder n 2) acc) (quotient n 2))]
+                  (cond 
+                    [(zero? n) acc]
+                    [else (recc (cons (remainder n 2) acc) (quotient n 2))]
                     )
+                  )
                 )
-            )
-          )
+           )
     (recc '() n)
+    )
   )
-)
 
 
 

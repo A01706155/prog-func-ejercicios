@@ -1,5 +1,9 @@
 #lang racket
 
+;; 14/03/2021
+;; Manolo Ramírez A0170155
+;; Daniel Cruz A01701370
+
 ; #############################
 ; # Ejercicios Manolo Ramírez #
 ; #############################
@@ -40,7 +44,7 @@
     [(null? lst) '()]
     [(eq? n 0) lst]
     [(< n 0) (rotate-left (+ n 1)
-                          (my-append (cons (car (reverse-head lst) '() ))
+                          (my-append (in-lst (car (reverse lst)))
                                      (reverse-head (cdr (reverse-head lst))))
                           )
              ]
