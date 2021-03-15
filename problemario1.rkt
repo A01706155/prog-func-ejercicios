@@ -114,8 +114,8 @@
 ;; 20. binary
 (define (binary n)
   (cond ((zero? n) '())
-        (else (cons(remainder n 2) (dec->bin (quotient n 2))
-            )
+        (else (cons(remainder n 2) (binary (quotient n 2))
+              )
         )
   )
 )
